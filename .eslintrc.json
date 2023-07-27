@@ -1,0 +1,15 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "no-duplicate-imports": ["warn", {}]
+  }
+}
