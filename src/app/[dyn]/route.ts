@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-type FetchPlayer = {
+export type FetchPlayer = {
     Pin_Player: string; // "14349819";
     AGAID: string; // "0";
     Last_Name: string; // "Janos";
@@ -29,6 +29,8 @@ export type ApiPlayer = {
     fullName: string;
     rank: string;
     rating: number;
+    country: string;
+    timestamp: number;
 };
 
 function FetchPlayerToApiPlayer(p: FetchPlayer): ApiPlayer {
@@ -37,12 +39,13 @@ function FetchPlayerToApiPlayer(p: FetchPlayer): ApiPlayer {
         fullName: `${p.Last_Name} ${p.Name}`,
         rank: p.Grade,
         rating: +p.Gor,
+        country: p.Country_Code,
+        timestamp: new Date().getTime(),
     });
 }
 
-// TODO: for prod
-// 5 min store on client
-const cacheBrowserSec = 5 * 5;
+// 10 min store in browser header cache
+const cacheBrowserSec = 10 * 60;
 
 export async function GET(
     _request: Request,

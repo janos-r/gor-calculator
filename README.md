@@ -1,10 +1,5 @@
 TODO:
 
-- save (remember) all players locally
-  - get and refresh periodically
-  - set onChange
-    https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#using-headers
-  - fn for clear single and all opponents from cache
 - header link to github
   - under or next to theme switcher
 - "tab" key go from 1st search directly to the second, skipping links and delete

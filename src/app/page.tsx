@@ -22,18 +22,47 @@ import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
 import LinkIcon from "@mui/icons-material/Link";
 import ratingToRank from "@/utils/ratingToRank";
 import { East } from "@mui/icons-material";
+import { loadOpponents, loadPlayer } from "./load";
+
+const loadPlayerKey = "playerMain";
+const loadOpponentsKey = "opponents";
 
 export default function Home() {
-  const [playerMain, setPlayerMain] = useState<ApiPlayer | null>();
-  const [opponents, setOpponents] = useState<Opponents>([{
-    id: 0,
-    opponent: null,
-    win: true,
-    gorChange: null,
-  }]);
-  const [progress, setProgress] = useState<number>(0);
-  const [totalGorChange, setTotalGorChange] = useState<number>();
-  const [progressGor, setProgressGor] = useState<number>(0);
+  const [playerMain, setPlayerMain] = useState<ApiPlayer | null>(null);
+  const [opponents, setOpponents] = useState<Opponents>([]);
+  const [progress, setProgress] = useState<number>(0); // from 0-100 - wheel input
+  const [totalGorChange, setTotalGorChange] = useState<number | null>(null);
+  const [progressGor, setProgressGor] = useState<number>(0); // full GoR - dynamic value
+
+  // On init - localStorage
+  useEffect(() => {
+    loadPlayer(setPlayerMain, loadPlayerKey).catch(console.error);
+    loadOpponents(setOpponents, loadOpponentsKey);
+  }, []);
+
+  // Player change localStorage
+  useEffect(() => {
+    /*
+    This works as expected on prod!
+    To make loading work on a dev build, this would be necessary:
+    Don't change on init render:
+    const initialPlayerRender = useRef(true);
+    const initialOpponentsRender = useRef(true);
+    if (initialPlayerRender.current) {
+     initialPlayerRender.current = false;
+    } else {...}
+    */
+    if (playerMain) {
+      localStorage.setItem(loadPlayerKey, JSON.stringify(playerMain));
+    } else {
+      localStorage.removeItem(loadPlayerKey);
+    }
+  }, [playerMain]);
+
+  // Opponents change localStorage
+  useEffect(() => {
+    localStorage.setItem(loadOpponentsKey, JSON.stringify(opponents));
+  }, [opponents]);
 
   // progress
   useEffect(() => {
@@ -107,8 +136,9 @@ export default function Home() {
   }, [totalGorChange]);
 
   useEffect(() => {
-    // setProgress here, to reset immediately to the new player rating
+    // setProgress here, to change immediately to the new player and/or start animation from base
     setProgressGor(playerMain?.rating || 0);
+    // GorChange
     if (playerMain && opponents.some((o) => o?.opponent)) {
       const totalGorChange = opponents.reduce((acc, next) => {
         if (next?.gorChange) acc += next.gorChange;
@@ -117,7 +147,7 @@ export default function Home() {
       const totalGorChangeRounded = Math.round(totalGorChange);
       setTotalGorChange(totalGorChangeRounded);
     } else {
-      setTotalGorChange(undefined);
+      setTotalGorChange(null);
     }
   }, [playerMain, opponents]);
 
@@ -168,6 +198,15 @@ export default function Home() {
           </Sheet>
 
           {/* Opponents */}
+          <Button
+            color="danger"
+            sx={{ width: 160, alignSelf: "end", m: 1, marginTop: 4 }}
+            size="sm"
+            onClick={() => setOpponents([])}
+          >
+            Clear all opponents
+          </Button>
+
           <Stack marginBottom={2} spacing={2} sx={{ p: 3 }}>
             {opponents.map((e) => {
               return (
@@ -193,15 +232,6 @@ export default function Home() {
               }])}
           >
             Add opponent
-          </Button>
-
-          <Button
-            color="danger"
-            sx={{ width: 160, alignSelf: "end", m: 1, marginTop: 4 }}
-            size="sm"
-            onClick={() => setOpponents([])}
-          >
-            Clear all opponents
           </Button>
         </Stack>
 

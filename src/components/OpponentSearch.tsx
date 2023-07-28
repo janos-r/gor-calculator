@@ -15,14 +15,12 @@ import { Close } from "@mui/icons-material";
 import LinkIcon from "@mui/icons-material/Link";
 import calcGor, { GorResult } from "@/utils/calcGor";
 
-export type Opponents = Array<
-  {
-    id: number;
-    opponent: ApiPlayer | null;
-    win: boolean;
-    gorChange: number | null;
-  } | null
->;
+export type Opponents = Array<{
+  id: number;
+  opponent: ApiPlayer | null;
+  win: boolean;
+  gorChange: number | null;
+}>;
 
 export default function OpponentSearch(
   props: {
@@ -35,17 +33,18 @@ export default function OpponentSearch(
   const { id, opponents, setOpponents, mainPlayerGor } = props;
   const index = opponents.findIndex((o) => o?.id === id);
   const item = opponents[index];
-  const loadOpponent = item?.opponent;
+  const loadOpponent = item?.opponent || null;
   const loadWin = item?.win;
+  const loadGorChange = item?.gorChange;
 
-  const [opponent, setOpponent] = useState<ApiPlayer | null | undefined>(
+  const [opponent, setOpponent] = useState<ApiPlayer | null>(
     loadOpponent,
   );
   const [win, setWin] = useState(loadWin ?? true);
-  const [calcGorRes, setCalcGorRes] = useState<GorResult | null>(null);
+  const [calcGorResult, setCalcGorResult] = useState<GorResult | null>(null);
 
   useEffect(() => {
-    setCalcGorRes(
+    setCalcGorResult(
       (mainPlayerGor && opponent)
         ? calcGor(mainPlayerGor, opponent.rating, win)
         : null,
@@ -59,12 +58,11 @@ export default function OpponentSearch(
         id,
         opponent: opponent || null,
         win,
-        gorChange: calcGorRes?.gorChange || null,
+        gorChange: calcGorResult?.gorChange || loadGorChange || null,
       };
       return [...arr];
     });
-    console.log(`opponents: ${JSON.stringify(opponents)}`);
-  }, [opponent, win, calcGorRes]);
+  }, [opponent, win, calcGorResult]);
 
   return (
     <Sheet
@@ -124,18 +122,18 @@ export default function OpponentSearch(
         />
       </FormControl>
 
-      {calcGorRes && (
+      {calcGorResult && (
         <Grid container sx={{ flexGrow: 1 }}>
           <Grid xs={6}>
             <Typography
               fontSize={30}
               textAlign={"center"}
               sx={{ marginRight: "1ch" }}
-              color={calcGorRes.gorChange > 0 ? "success" : "danger"}
+              color={calcGorResult.gorChange > 0 ? "success" : "danger"}
               fontWeight={"bold"}
             >
-              {calcGorRes.gorChange > 0 ? "+" : ""}
-              {calcGorRes.gorChange.toFixed(1)}
+              {calcGorResult.gorChange > 0 ? "+" : ""}
+              {calcGorResult.gorChange.toFixed(1)}
             </Typography>
             <Typography textAlign={"center"}>
               GoR change
@@ -146,7 +144,7 @@ export default function OpponentSearch(
               fontSize={30}
               textAlign={"center"}
             >
-              {(calcGorRes.winProbability * 100).toFixed()}%
+              {(calcGorResult.winProbability * 100).toFixed()}%
             </Typography>
             <Typography textAlign={"center"}>
               Win probability

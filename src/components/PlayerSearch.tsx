@@ -10,14 +10,13 @@ import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
 import { ApiPlayer } from "@/app/[dyn]/route";
 
-// TODO: for prod
-// After input, wait before fetch 300ms
-const debounce = 500;
+// After input, wait ms before fetch
+const debounce = 400;
 
 export default function PlayerSearch(
   props: {
-    value: ApiPlayer | null | undefined;
-    setValue: Dispatch<SetStateAction<ApiPlayer | null | undefined>>;
+    value: ApiPlayer | null;
+    setValue: Dispatch<SetStateAction<ApiPlayer | null>>;
   },
 ) {
   const { value, setValue } = props;
@@ -26,13 +25,11 @@ export default function PlayerSearch(
   const [options, setOptions] = useState<ApiPlayer[]>([]);
 
   useEffect(() => {
-    console.log(`new inputValue: ${inputValue}`);
     let active = true;
     // Debounce handler
     let handler: NodeJS.Timeout;
 
     const fetchFn = async () => {
-      console.log(`API fetch ${handler}`);
       setLoading(true);
 
       const res = await fetch(`/${inputValue}`);
@@ -41,7 +38,6 @@ export default function PlayerSearch(
       // don't write the fetch result if not active anymore
       if (active) {
         const names: ApiPlayer[] = await res.json();
-        console.log(`API response receive: ${names}`);
         setOptions(names);
         setLoading(false);
       }
@@ -51,7 +47,6 @@ export default function PlayerSearch(
     if (inputValue.length > 2 && !/\s/.test(inputValue)) {
       // Debounce time in ms
       handler = setTimeout(fetchFn, debounce);
-      console.log(`handler create: ${handler}`);
     } else if (inputValue.length === 0) {
       // when cleared (by backspace or clear event)
       setOptions([]);
@@ -59,7 +54,6 @@ export default function PlayerSearch(
 
     // Runs on new input
     return () => {
-      console.log(`handler stop: ${handler}`);
       // The handler from the previous effect. If the timeout still exists and gets cleared, this creates the debounce behavior.
       clearTimeout(handler);
       setLoading(false);
