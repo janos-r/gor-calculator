@@ -19,10 +19,11 @@ import ColorSchemeToggle from "@/components/ColorSchemeToggle";
 import { ApiPlayer } from "./[dyn]/route";
 import toRankUp from "@/utils/toRankUp";
 import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
-import LinkIcon from "@mui/icons-material/Link";
 import ratingToRank from "@/utils/ratingToRank";
-import { East } from "@mui/icons-material";
+import { East, OpenInNew } from "@mui/icons-material";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { loadOpponents, loadPlayer } from "./load";
+import PlayerDetails from "@/components/PlayerDetails";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -167,33 +168,7 @@ export default function Home() {
             <FormControl size="lg" sx={{ m: 1 }}>
               <FormLabel>Main player</FormLabel>
               <PlayerSearch value={playerMain} setValue={setPlayerMain} />
-              {playerMain && (
-                <Grid container sx={{ flexGrow: 1, marginTop: 1 }}>
-                  <Typography
-                    fontSize={"sm"}
-                    textColor="neutral.300"
-                    sx={{ marginRight: "auto" }}
-                  >
-                    GoR: {playerMain.rating}
-                  </Typography>
-                  <Typography
-                    fontSize={"sm"}
-                    textColor="neutral.400"
-                    sx={{ marginLeft: "auto" }}
-                  >
-                    ID:{"  "}
-                    <Link
-                      href={`https://www.europeangodatabase.eu/EGD/Player_Card.php?&key=${playerMain.pin}`}
-                      color="neutral"
-                      endDecorator={<LinkIcon color="primary" />}
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      {playerMain.pin}
-                    </Link>
-                  </Typography>
-                </Grid>
-              )}
+              {playerMain && <PlayerDetails value={playerMain} />}
             </FormControl>
           </Sheet>
 

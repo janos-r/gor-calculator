@@ -11,9 +11,11 @@ import {
 } from "@mui/joy";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PlayerSearch from "./PlayerSearch";
-import { Close } from "@mui/icons-material";
-import LinkIcon from "@mui/icons-material/Link";
+import { Close, OpenInNew } from "@mui/icons-material";
 import calcGor, { GorResult } from "@/utils/calcGor";
+import countryCodes from "@/utils/countryCodes";
+import { getFlagEmoji } from "@/utils/getFlagEmoji";
+import PlayerDetails from "./PlayerDetails";
 
 export type Opponents = Array<{
   id: number;
@@ -84,33 +86,7 @@ export default function OpponentSearch(
         </IconButton>
         <FormLabel>Opponent {index + 1}</FormLabel>
         <PlayerSearch value={opponent} setValue={setOpponent} />
-        {opponent && (
-          <Grid container sx={{ flexGrow: 1, marginTop: 1 }}>
-            <Typography
-              fontSize={"sm"}
-              textColor="neutral.300"
-              sx={{ marginRight: "auto" }}
-            >
-              GoR: {opponent.rating}
-            </Typography>
-            <Typography
-              fontSize={"sm"}
-              textColor="neutral.400"
-              sx={{ marginLeft: "auto" }}
-            >
-              ID:{" "}
-              <Link
-                href={`https://www.europeangodatabase.eu/EGD/Player_Card.php?&key=${opponent.pin}`}
-                color="neutral"
-                endDecorator={<LinkIcon color="primary" />}
-                target="_blank"
-                rel="noopener"
-              >
-                {opponent.pin}
-              </Link>
-            </Typography>
-          </Grid>
-        )}
+        {opponent && <PlayerDetails value={opponent} />}
 
         <Switch
           sx={{ m: 2 }}

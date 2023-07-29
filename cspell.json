@@ -11,5 +11,9 @@
     }
   ],
   "dictionaries": ["cspell-words"],
-  "ignorePaths": ["/cspell-words.txt", "/src/app/icon.svg"]
+  "ignorePaths": [
+    "/cspell-words.txt",
+    "/src/app/icon.svg",
+    "/src/utils/countryCodes.ts"
+  ]
 }

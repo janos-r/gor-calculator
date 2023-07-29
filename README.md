@@ -8,7 +8,6 @@ TODO:
     https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 - page for donations
   - cool blinking css link https://freefrontend.com/css-glow-effects/
-- add icon for the player's country
 - background light and dark
   - GlobalStyles
     https://mui.com/material-ui/customization/how-to-customize/#4-global-css-override
@@ -20,6 +19,7 @@ TODO:
   - possible click and use as a main player or opponent
 - add a details expand for opponents
   - show how many points they would gain/loose
+- buy domain
 
 ---
 
