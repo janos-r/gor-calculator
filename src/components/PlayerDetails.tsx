@@ -11,7 +11,7 @@ export default function PlayerDetails(
   return (
     <Grid
       container
-      justifyContent="flex-start"
+      justifyContent="space-between"
       alignItems="center"
       sx={{ marginTop: 1 }}
     >
@@ -36,14 +36,14 @@ export default function PlayerDetails(
         </Typography>
       </Grid>
       <Grid container alignItems="center">
-        <Typography
-          fontSize={30}
-          sx={{ marginRight: 0.5 }}
-        >
-          {getFlagEmoji(player.country)}
-        </Typography>
         <Typography fontSize={"sm"}>
           {countryCodes[player.country]}
+        </Typography>
+        <Typography
+          fontSize={25}
+          sx={{ marginLeft: 0.5 }}
+        >
+          {getFlagEmoji(player.country)}
         </Typography>
       </Grid>
     </Grid>

@@ -157,108 +157,139 @@ export default function Home() {
       <CssBaseline />
       <ColorSchemeToggle />
 
-      <Grid container justifyContent={"center"}>
-        <Stack width={420}>
-          {/* Main Player */}
-          <Sheet
-            variant="outlined"
-            color="primary"
-            sx={{ m: 3, p: 3, paddingTop: 3, borderRadius: 50, borderWidth: 4 }}
-          >
-            <FormControl size="lg" sx={{ m: 1 }}>
-              <FormLabel>Main player</FormLabel>
-              <PlayerSearch value={playerMain} setValue={setPlayerMain} />
-              {playerMain && <PlayerDetails value={playerMain} />}
-            </FormControl>
-          </Sheet>
+      <Grid
+        container
+        direction="column"
+        justifyContent="space-between"
+        sx={{ minHeight: "100vh" }}
+      >
+        <Grid container justifyContent={"center"} marginBottom={5}>
+          <Stack width={420}>
+            {/* Main Player */}
+            <Sheet
+              variant="outlined"
+              color="primary"
+              sx={{
+                m: 3,
+                p: 3,
+                paddingTop: 3,
+                borderRadius: 50,
+                borderWidth: 4,
+              }}
+            >
+              <FormControl size="lg" sx={{ m: 1 }}>
+                <FormLabel>Main player</FormLabel>
+                <PlayerSearch value={playerMain} setValue={setPlayerMain} />
+                {playerMain && <PlayerDetails value={playerMain} />}
+              </FormControl>
+            </Sheet>
 
-          {/* Opponents */}
-          <Button
-            color="danger"
-            sx={{ width: 160, alignSelf: "end", m: 1, marginTop: 4 }}
-            size="sm"
-            onClick={() => setOpponents([])}
-          >
-            Clear all opponents
-          </Button>
+            {/* Opponents */}
+            <Button
+              color="danger"
+              sx={{ width: 160, alignSelf: "end", m: 1, marginTop: 4 }}
+              size="sm"
+              onClick={() => setOpponents([])}
+            >
+              Clear all opponents
+            </Button>
 
-          <Stack marginBottom={2} spacing={2} sx={{ p: 3 }}>
-            {opponents.map((e) => {
-              return (
-                <OpponentSearch
-                  key={e?.id}
-                  id={e!.id}
-                  opponents={opponents}
-                  setOpponents={setOpponents}
-                  mainPlayerGor={playerMain?.rating}
-                />
-              );
-            })}
+            <Stack marginBottom={2} spacing={2} sx={{ p: 3 }}>
+              {opponents.map((e) => {
+                return (
+                  <OpponentSearch
+                    key={e?.id}
+                    id={e!.id}
+                    opponents={opponents}
+                    setOpponents={setOpponents}
+                    mainPlayerGor={playerMain?.rating}
+                  />
+                );
+              })}
+            </Stack>
+
+            <Button
+              sx={{ width: "70%", m: "auto", marginBottom: 4 }}
+              onClick={() =>
+                setOpponents([...opponents, {
+                  id: Math.random(),
+                  opponent: null,
+                  win: true,
+                  gorChange: null,
+                }])}
+            >
+              Add opponent
+            </Button>
           </Stack>
 
-          <Button
-            sx={{ m: "auto", width: "70%" }}
-            onClick={() =>
-              setOpponents([...opponents, {
-                id: Math.random(),
-                opponent: null,
-                win: true,
-                gorChange: null,
-              }])}
+          <CircularProgress
+            // size="lg"
+            sx={{
+              "--CircularProgress-size": "230px",
+              "--CircularProgress-progressThickness": "15px",
+              m: 4,
+            }}
+            determinate
+            value={progress}
+            variant="outlined"
           >
-            Add opponent
-          </Button>
-        </Stack>
-
-        <CircularProgress
-          // size="lg"
-          sx={{
-            "--CircularProgress-size": "210px",
-            "--CircularProgress-progressThickness": "12px",
-            m: 4,
-          }}
-          determinate
-          value={progress}
-          variant="outlined"
-        >
-          {playerMain && (
-            <Typography textAlign={"center"}>
-              <Typography level="h2">
-                {ratingToRank(progressGor)} <br />
-              </Typography>
-              <Typography>
-                {progressGor} GoR<br />
-              </Typography>
-              {totalGorChange && (
+            {playerMain && (
+              <Typography textAlign={"center"}>
+                <Typography level="h2">
+                  {ratingToRank(progressGor)} <br />
+                </Typography>
                 <Typography>
-                  {
-                    /* TODO: make the arrow lower or smaller.
+                  {progressGor} GoR<br />
+                </Typography>
+                {totalGorChange && (
+                  <Typography>
+                    {
+                      /* TODO: make the arrow lower or smaller.
                       There are some type issues with using fontSize. "md" builds in dev, but not in build. And "medium" doesn't have an effect. */
-                  }
-                  {playerMain.rating} <East fontSize="medium" />{" "}
-                  <Typography
-                    color={totalGorChange > 0 ? "success" : "danger"}
-                  >
-                    {playerMain.rating + totalGorChange}
+                    }
+                    {playerMain.rating} <East fontSize="medium" />{" "}
+                    <Typography
+                      color={totalGorChange > 0 ? "success" : "danger"}
+                    >
+                      {playerMain.rating + totalGorChange}
+                    </Typography>
+                    <br />
                   </Typography>
-                  <br />
-                </Typography>
-              )}
-              {toRankUp(playerMain.rating)} to rank up<br />
-              {totalGorChange && (
-                <Typography
-                  level="h3"
-                  fontWeight="bold"
-                  color={totalGorChange > 0 ? "success" : "danger"}
-                  marginRight={"1ch"}
-                >
-                  {totalGorChange > 0 ? "+" : ""}
-                  {totalGorChange}
-                </Typography>
-              )}
-            </Typography>
-          )}
-        </CircularProgress>
+                )}
+                {toRankUp(playerMain.rating)} to rank up<br />
+                {totalGorChange && (
+                  <Typography
+                    level="h3"
+                    fontWeight="bold"
+                    color={totalGorChange > 0 ? "success" : "danger"}
+                    marginRight={"1ch"}
+                  >
+                    {totalGorChange > 0 ? "+" : ""}
+                    {totalGorChange}
+                  </Typography>
+                )}
+              </Typography>
+            )}
+          </CircularProgress>
+        </Grid>
+
+        <Grid
+          container
+          bgcolor={"background.level2"}
+          justifyContent="center"
+          p={2}
+        >
+          <Link
+            href={`https://github.com/janos-r/gor-calculator`}
+            // color="neutral"
+            startDecorator={<GitHubIcon sx={{ fontSize: 40 }} />}
+            endDecorator={<OpenInNew />}
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </Link>
+        </Grid>
       </Grid>
     </CssVarsProvider>
   );

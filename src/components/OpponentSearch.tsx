@@ -4,17 +4,14 @@ import {
   FormLabel,
   Grid,
   IconButton,
-  Link,
   Sheet,
   Switch,
   Typography,
 } from "@mui/joy";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PlayerSearch from "./PlayerSearch";
-import { Close, OpenInNew } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import calcGor, { GorResult } from "@/utils/calcGor";
-import countryCodes from "@/utils/countryCodes";
-import { getFlagEmoji } from "@/utils/getFlagEmoji";
 import PlayerDetails from "./PlayerDetails";
 
 export type Opponents = Array<{

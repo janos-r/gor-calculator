@@ -1,7 +1,5 @@
 TODO:
 
-- header link to github
-  - under or next to theme switcher
 - "tab" key go from 1st search directly to the second, skipping links and delete
   buttons
   - tabindex
