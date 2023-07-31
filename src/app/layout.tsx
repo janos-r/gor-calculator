@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" id="top">
+    <html lang="en">
       <body className={inter.className}>
         {children}
         <Analytics />

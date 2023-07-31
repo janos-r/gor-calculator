@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LinkOffSharp, OpenInNew } from "@mui/icons-material";
+import { OpenInNew } from "@mui/icons-material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import {
   Button,
@@ -83,11 +83,12 @@ export default function Footer() {
             day and the opponents stay unchanged until cleared. If you find any
             bugs or would like to provide some fix or feature, feel free to
             contact me via GitHub with a PR or with an issue. I leave this code
-            fully open. I love Go and I would be happy if this can be a useful
-            way how to give back to the community.<br />
+            fully open. <br />
+            I love Go and I would be happy if this can be a useful way how to
+            give back to the community.<br />
             <br />
 
-            Good luck in your games and don't forget to have fun ;)<br />
+            Good luck in your games and don&apos;t forget to have fun ;)<br />
             Radim Janoš
           </Typography>
         </Sheet>

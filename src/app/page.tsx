@@ -9,7 +9,6 @@ import {
   GlobalStyles,
   Grid,
   IconButton,
-  Link,
   Sheet,
   Stack,
   Tooltip,
@@ -28,6 +27,7 @@ import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
 import Footer from "@/components/footer";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -215,25 +215,33 @@ export default function Home() {
 
             <Button
               sx={{ width: "70%", m: "auto", marginBottom: 4 }}
-              onClick={() =>
+              onClick={() => {
                 setOpponents([...opponents, {
                   id: Math.random(),
                   opponent: null,
                   win: true,
                   gorChange: null,
-                }])}
+                }]);
+                setTimeout(
+                  () => window.scrollTo(0, document.body.scrollHeight),
+                  // wait for the window height to update, otherwise it doesn't scroll all the way down
+                  0,
+                );
+              }}
             >
               Add opponent
             </Button>
           </Stack>
 
           <CircularProgress
-            id="circle"
             sx={{
-              "--CircularProgress-size": "230px",
-              "--CircularProgress-progressThickness": "15px",
+              "--CircularProgress-size": "240px",
+              // "--CircularProgress-trackThickness": "12px",
+              "--CircularProgress-progressThickness": "17px",
               m: 4,
+              border: 2,
             }}
+            color="primary"
             determinate
             value={progress}
             variant="outlined"
@@ -278,26 +286,45 @@ export default function Home() {
           </CircularProgress>
         </Grid>
 
-        <Link href="#top">
-          <Tooltip title="Scroll to top" variant="soft">
-            <IconButton
-              aria-label="Scroll to top"
-              size="lg"
-              variant="soft"
-              color="neutral"
-              sx={{
-                position: "fixed",
-                zIndex: 999,
-                bottom: "2rem",
-                right: "2rem",
-                borderRadius: "50%",
-                boxShadow: "sm",
-              }}
-            >
-              <KeyboardArrowUpIcon />
-            </IconButton>
-          </Tooltip>
-        </Link>
+        <Tooltip title="Scroll to top" variant="soft" placement="left">
+          <IconButton
+            aria-label="Scroll to top"
+            size="lg"
+            variant="soft"
+            color="neutral"
+            onClick={() => window.scrollTo(0, 0)}
+            sx={{
+              position: "fixed",
+              zIndex: 999,
+              bottom: "5rem",
+              right: "2rem",
+              borderRadius: "50%",
+              boxShadow: "sm",
+            }}
+          >
+            <KeyboardArrowUpIcon />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Scroll to bottom" variant="soft" placement="left">
+          <IconButton
+            aria-label="Scroll to bottom"
+            size="lg"
+            variant="soft"
+            color="neutral"
+            onClick={() => window.scrollTo(0, document.body.scrollHeight)}
+            sx={{
+              position: "fixed",
+              zIndex: 999,
+              bottom: "1rem",
+              right: "2rem",
+              borderRadius: "50%",
+              boxShadow: "sm",
+            }}
+          >
+            <KeyboardArrowDownIcon />
+          </IconButton>
+        </Tooltip>
 
         <Footer />
       </Grid>
