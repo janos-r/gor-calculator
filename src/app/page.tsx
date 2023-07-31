@@ -6,9 +6,13 @@ import {
   CssVarsProvider,
   FormControl,
   FormLabel,
+  GlobalStyles,
   Grid,
+  IconButton,
+  Link,
   Sheet,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/joy";
 import { useEffect, useState } from "react";
@@ -23,6 +27,7 @@ import { East } from "@mui/icons-material";
 import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
 import Footer from "@/components/footer";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -154,6 +159,7 @@ export default function Home() {
   return (
     <CssVarsProvider defaultMode="dark">
       <CssBaseline />
+      <GlobalStyles styles={{ html: { "scroll-behavior": "smooth" } }} />
       <ColorSchemeToggle />
 
       <Grid
@@ -222,7 +228,7 @@ export default function Home() {
           </Stack>
 
           <CircularProgress
-            // size="lg"
+            id="circle"
             sx={{
               "--CircularProgress-size": "230px",
               "--CircularProgress-progressThickness": "15px",
@@ -271,6 +277,27 @@ export default function Home() {
             )}
           </CircularProgress>
         </Grid>
+
+        <Link href="#top">
+          <Tooltip title="Scroll to top" variant="soft">
+            <IconButton
+              aria-label="Scroll to top"
+              size="lg"
+              variant="soft"
+              color="neutral"
+              sx={{
+                position: "fixed",
+                zIndex: 999,
+                bottom: "2rem",
+                right: "2rem",
+                borderRadius: "50%",
+                boxShadow: "sm",
+              }}
+            >
+              <KeyboardArrowUpIcon />
+            </IconButton>
+          </Tooltip>
+        </Link>
 
         <Footer />
       </Grid>
