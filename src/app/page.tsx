@@ -8,10 +8,8 @@ import {
   FormLabel,
   GlobalStyles,
   Grid,
-  IconButton,
   Sheet,
   Stack,
-  Tooltip,
   Typography,
 } from "@mui/joy";
 import { useEffect, useState } from "react";
@@ -25,9 +23,9 @@ import ratingToRank from "@/utils/ratingToRank";
 import { East } from "@mui/icons-material";
 import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
-import Footer from "@/components/footer";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToBottom from "@/components/ScrollToBottom";
+import Footer from "@/components/Footer";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -286,45 +284,8 @@ export default function Home() {
           </CircularProgress>
         </Grid>
 
-        <Tooltip title="Scroll to top" variant="soft" placement="left">
-          <IconButton
-            aria-label="Scroll to top"
-            size="lg"
-            variant="soft"
-            color="neutral"
-            onClick={() => window.scrollTo(0, 0)}
-            sx={{
-              position: "fixed",
-              zIndex: 999,
-              bottom: "5rem",
-              right: "2rem",
-              borderRadius: "50%",
-              boxShadow: "sm",
-            }}
-          >
-            <KeyboardArrowUpIcon />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Scroll to bottom" variant="soft" placement="left">
-          <IconButton
-            aria-label="Scroll to bottom"
-            size="lg"
-            variant="soft"
-            color="neutral"
-            onClick={() => window.scrollTo(0, document.body.scrollHeight)}
-            sx={{
-              position: "fixed",
-              zIndex: 999,
-              bottom: "1rem",
-              right: "2rem",
-              borderRadius: "50%",
-              boxShadow: "sm",
-            }}
-          >
-            <KeyboardArrowDownIcon />
-          </IconButton>
-        </Tooltip>
+        <ScrollToTop />
+        <ScrollToBottom />
 
         <Footer />
       </Grid>
