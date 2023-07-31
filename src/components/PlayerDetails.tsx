@@ -21,15 +21,16 @@ export default function PlayerDetails(
         </Typography>
         <Typography
           fontSize={"sm"}
-          textColor="neutral.400"
+          textColor="neutral"
         >
           ID:{" "}
           <Link
             href={`https://www.europeangodatabase.eu/EGD/Player_Card.php?&key=${player.pin}`}
-            color="neutral"
-            endDecorator={<OpenInNew color="primary" />}
+            textColor={"inherit"}
+            endDecorator={<OpenInNew />}
             target="_blank"
             rel="noopener"
+            tabIndex={9}
           >
             {player.pin}
           </Link>

@@ -1,6 +1,7 @@
 # New Words
 AGAID
 Janos
+Janoš
 Radim
 Elab_Date
 retcode

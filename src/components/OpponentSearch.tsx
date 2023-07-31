@@ -78,6 +78,7 @@ export default function OpponentSearch(
           onClick={() => {
             setOpponents((arr) => arr.filter((o) => o?.id !== id));
           }}
+          tabIndex={9}
         >
           <Close />
         </IconButton>

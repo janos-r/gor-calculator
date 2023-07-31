@@ -64,6 +64,7 @@ export default function PlayerSearch(
 
   return (
     <Autocomplete
+      tabIndex={0}
       variant="solid"
       startDecorator={<PersonSearch />}
       endDecorator={loading ? <CircularProgress size="sm" /> : null}

@@ -7,7 +7,6 @@ import {
   FormControl,
   FormLabel,
   Grid,
-  Link,
   Sheet,
   Stack,
   Typography,
@@ -20,10 +19,10 @@ import { ApiPlayer } from "./[dyn]/route";
 import toRankUp from "@/utils/toRankUp";
 import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
 import ratingToRank from "@/utils/ratingToRank";
-import { East, OpenInNew } from "@mui/icons-material";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { East } from "@mui/icons-material";
 import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
+import Footer from "@/components/footer";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -273,23 +272,7 @@ export default function Home() {
           </CircularProgress>
         </Grid>
 
-        <Grid
-          container
-          bgcolor={"background.level2"}
-          justifyContent="center"
-          p={2}
-        >
-          <Link
-            href={`https://github.com/janos-r/gor-calculator`}
-            // color="neutral"
-            startDecorator={<GitHubIcon sx={{ fontSize: 40 }} />}
-            endDecorator={<OpenInNew />}
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </Link>
-        </Grid>
+        <Footer />
       </Grid>
     </CssVarsProvider>
   );
