@@ -37,6 +37,7 @@ export default function MenuButton() {
         aria-expanded={open ? "true" : undefined}
         // variant="solid"
         color="neutral"
+        size="lg"
         onClick={() => {
           setOpen(!open);
         }}
