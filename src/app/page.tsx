@@ -20,12 +20,12 @@ import { ApiPlayer } from "./[dyn]/route";
 import toRankUp from "@/utils/toRankUp";
 import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
 import ratingToRank from "@/utils/ratingToRank";
-import { East } from "@mui/icons-material";
 import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToBottom from "@/components/ScrollToBottom";
 import Footer from "@/components/Footer";
+import EastIcon from "@mui/icons-material/East";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -258,7 +258,7 @@ export default function Home() {
                       /* TODO: make the arrow lower or smaller.
                       There are some type issues with using fontSize. "md" builds in dev, but not in build. And "medium" doesn't have an effect. */
                     }
-                    {playerMain.rating} <East fontSize="medium" />{" "}
+                    {playerMain.rating} <EastIcon fontSize="medium" />{" "}
                     <Typography
                       color={totalGorChange > 0 ? "success" : "danger"}
                     >

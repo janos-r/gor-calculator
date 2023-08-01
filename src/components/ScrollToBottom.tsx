@@ -14,7 +14,7 @@ export default function ScrollToBottom() {
           position: "fixed",
           zIndex: 999,
           bottom: "1rem",
-          right: "2rem",
+          right: "1rem",
           borderRadius: "50%",
           boxShadow: "sm",
         }}

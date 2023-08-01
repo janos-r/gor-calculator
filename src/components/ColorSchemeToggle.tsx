@@ -17,6 +17,7 @@ export default function ColorSchemeToggle() {
   }
   return (
     <IconButton
+      tabIndex={-1}
       id="toggle-mode"
       size="lg"
       variant="soft"
@@ -31,8 +32,8 @@ export default function ColorSchemeToggle() {
       sx={{
         position: "fixed",
         zIndex: 999,
-        top: "2rem",
-        right: "2rem",
+        top: "1rem",
+        right: "1rem",
         borderRadius: "50%",
         boxShadow: "sm",
       }}

@@ -64,7 +64,6 @@ export default function PlayerSearch(
 
   return (
     <Autocomplete
-      tabIndex={0}
       variant="solid"
       startDecorator={<PersonSearch />}
       endDecorator={loading ? <CircularProgress size="sm" /> : null}
@@ -72,7 +71,7 @@ export default function PlayerSearch(
       options={options}
       filterOptions={(x) => x} // to skip the components filter
       sx={{ width: 310, borderRadius: 10 }}
-      freeSolo
+      freeSolo // allows to enter on input instead of option, not ideal, but prevents the immediate "No options" message
       clearOnBlur
       clearOnEscape
       blurOnSelect

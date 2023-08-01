@@ -14,7 +14,7 @@ export default function ScrollToTop() {
           position: "fixed",
           zIndex: 999,
           bottom: "5rem",
-          right: "2rem",
+          right: "1rem",
           borderRadius: "50%",
           boxShadow: "sm",
         }}
