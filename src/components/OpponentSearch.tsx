@@ -67,7 +67,7 @@ export default function OpponentSearch(
     <Sheet
       variant="outlined"
       color="primary"
-      sx={{ p: 3, borderRadius: 50 }}
+      sx={{ p: 3, borderRadius: 30, borderWidth: 4 }}
     >
       <FormControl size="lg" sx={{ m: 1, marginBottom: 0 }}>
         <IconButton

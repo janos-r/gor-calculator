@@ -24,8 +24,8 @@ import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToBottom from "@/components/ScrollToBottom";
-import Bar from "@/components/Bar";
 import EastIcon from "@mui/icons-material/East";
+import MenuButton from "@/components/MenuButton";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -157,7 +157,7 @@ export default function Home() {
   return (
     <CssVarsProvider defaultMode="dark">
       <CssBaseline />
-      <GlobalStyles styles={{ html: { "scroll-behavior": "smooth" } }} />
+      <GlobalStyles styles={{ html: { "scrollBehavior": "smooth" } }} />
 
       <ColorSchemeToggle />
 
@@ -168,7 +168,7 @@ export default function Home() {
         //   justifyContent="space-between"
         //   sx={{ minHeight: "100vh" }}
       >
-        <Bar />
+        <MenuButton />
 
         <Grid container justifyContent={"center"} marginBottom={5}>
           <Stack width={420}>
@@ -180,7 +180,7 @@ export default function Home() {
                 m: 3,
                 p: 3,
                 paddingTop: 3,
-                borderRadius: 50,
+                borderRadius: 30,
                 borderWidth: 4,
               }}
             >
@@ -194,6 +194,7 @@ export default function Home() {
             {/* Opponents */}
             <Button
               color="danger"
+              variant="soft"
               sx={{ width: 160, alignSelf: "end", m: 1, marginTop: 4 }}
               size="sm"
               onClick={() => setOpponents([])}
@@ -242,6 +243,7 @@ export default function Home() {
               "--CircularProgress-progressThickness": "17px",
               m: 4,
               border: 2,
+              // borderWidth: 4,
             }}
             color="primary"
             determinate

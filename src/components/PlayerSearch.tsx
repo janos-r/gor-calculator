@@ -64,7 +64,7 @@ export default function PlayerSearch(
 
   return (
     <Autocomplete
-      variant="solid"
+      variant="soft"
       startDecorator={<PersonSearch />}
       endDecorator={loading ? <CircularProgress size="sm" /> : null}
       placeholder="Search by last name..."
