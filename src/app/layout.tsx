@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "GoR Calculator",
   description: "Go rating calculator for the European Go Database",
+  twitter: { card: "summary" },
 };
 
 export default function RootLayout({

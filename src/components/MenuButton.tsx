@@ -7,6 +7,7 @@ import Menu from "@mui/joy/Menu";
 import ModalDialog from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import {
+  Box,
   IconButton,
   Link,
   ListItemDecorator,
@@ -15,6 +16,7 @@ import {
   ModalClose,
   Typography,
 } from "@mui/joy";
+import ColorSchemeToggle from "./ColorSchemeToggle";
 
 export default function MenuButton() {
   const buttonRef = useRef(null);
@@ -59,6 +61,9 @@ export default function MenuButton() {
         placement="top-start"
         sx={{ "--List-padding": "var(--ListDivider-gap)" }}
       >
+        <Box alignSelf={"center"}>
+          <ColorSchemeToggle />
+        </Box>
         <Link
           variant="plain"
           color="neutral"

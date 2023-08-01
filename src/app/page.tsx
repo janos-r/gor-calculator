@@ -15,7 +15,6 @@ import {
 import { useEffect, useState } from "react";
 import CssBaseline from "@mui/joy/CssBaseline";
 import PlayerSearch from "@/components/PlayerSearch";
-import ColorSchemeToggle from "@/components/ColorSchemeToggle";
 import { ApiPlayer } from "./[dyn]/route";
 import toRankUp from "@/utils/toRankUp";
 import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
@@ -158,8 +157,6 @@ export default function Home() {
     <CssVarsProvider defaultMode="dark">
       <CssBaseline />
       <GlobalStyles styles={{ html: { "scrollBehavior": "smooth" } }} />
-
-      <ColorSchemeToggle />
 
       <Grid
         container

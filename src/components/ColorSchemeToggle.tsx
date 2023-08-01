@@ -20,7 +20,7 @@ export default function ColorSchemeToggle() {
       tabIndex={-1}
       id="toggle-mode"
       size="lg"
-      variant="soft"
+      variant="outlined"
       color="neutral"
       onClick={() => {
         if (mode === "light") {
@@ -30,12 +30,12 @@ export default function ColorSchemeToggle() {
         }
       }}
       sx={{
-        position: "fixed",
-        zIndex: 999,
-        top: "1rem",
-        right: "1rem",
+        // position: "fixed",
+        // zIndex: 999,
+        // top: "1rem",
+        // right: "1rem",
         borderRadius: "50%",
-        boxShadow: "sm",
+        // boxShadow: "md",
       }}
     >
       {mode === "light" ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
