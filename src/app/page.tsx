@@ -24,7 +24,7 @@ import { loadOpponents, loadPlayer } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToBottom from "@/components/ScrollToBottom";
-import Footer from "@/components/Footer";
+import Bar from "@/components/Bar";
 import EastIcon from "@mui/icons-material/East";
 
 const loadPlayerKey = "playerMain";
@@ -158,14 +158,18 @@ export default function Home() {
     <CssVarsProvider defaultMode="dark">
       <CssBaseline />
       <GlobalStyles styles={{ html: { "scroll-behavior": "smooth" } }} />
+
       <ColorSchemeToggle />
 
       <Grid
         container
         direction="column"
-        justifyContent="space-between"
-        sx={{ minHeight: "100vh" }}
+        // useful with Bar on bottom
+        //   justifyContent="space-between"
+        //   sx={{ minHeight: "100vh" }}
       >
+        <Bar />
+
         <Grid container justifyContent={"center"} marginBottom={5}>
           <Stack width={420}>
             {/* Main Player */}
@@ -286,8 +290,6 @@ export default function Home() {
 
         <ScrollToTop />
         <ScrollToBottom />
-
-        <Footer />
       </Grid>
     </CssVarsProvider>
   );

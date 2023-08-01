@@ -11,14 +11,15 @@ import {
   Typography,
 } from "@mui/joy";
 
-export default function Footer() {
+export default function Bar() {
   const [openAbout, setOpenAbout] = useState<boolean>(false);
   return (
     <Grid
       container
       bgcolor={"background.level2"}
       justifyContent="center"
-      p={2}
+      p={1}
+      marginBottom={1}
     >
       <Button
         variant="outlined"
