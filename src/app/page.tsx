@@ -25,6 +25,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToBottom from "@/components/ScrollToBottom";
 import EastIcon from "@mui/icons-material/East";
 import MenuButton from "@/components/MenuButton";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import AddIcon from "@mui/icons-material/Add";
 
 const loadPlayerKey = "playerMain";
 const loadOpponentsKey = "opponents";
@@ -192,11 +194,12 @@ export default function Home() {
             <Button
               color="danger"
               variant="soft"
-              sx={{ width: 160, alignSelf: "end", m: 1, marginTop: 4 }}
+              sx={{ width: "auto", alignSelf: "end", m: 1, marginTop: 4 }}
               size="sm"
+              startDecorator={<HighlightOffIcon />}
               onClick={() => setOpponents([])}
             >
-              Clear all opponents
+              All opponents
             </Button>
 
             <Stack marginBottom={2} spacing={2} sx={{ p: 3 }}>
@@ -214,7 +217,10 @@ export default function Home() {
             </Stack>
 
             <Button
-              sx={{ width: "70%", m: "auto", marginBottom: 4 }}
+              size="lg"
+              variant="outlined"
+              sx={{ width: "auto", m: "auto", marginBottom: 4 }}
+              startDecorator={<AddIcon />}
               onClick={() => {
                 setOpponents([...opponents, {
                   id: Math.random(),
@@ -229,7 +235,7 @@ export default function Home() {
                 );
               }}
             >
-              Add opponent
+              Opponent
             </Button>
           </Stack>
 

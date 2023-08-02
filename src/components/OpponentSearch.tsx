@@ -72,7 +72,7 @@ export default function OpponentSearch(
       <FormControl size="lg" sx={{ m: 1, marginBottom: 0 }}>
         <IconButton
           size="sm"
-          variant="soft"
+          variant="plain"
           // This stupid negative setting is a workaround. It didn't work outside of FormControl with positive numbers
           sx={{ position: "absolute", right: -12, top: -12 }}
           onClick={() => {
