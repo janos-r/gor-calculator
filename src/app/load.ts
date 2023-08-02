@@ -1,6 +1,6 @@
 import { Opponents } from "@/components/OpponentSearch";
 import { Dispatch, SetStateAction } from "react";
-import { ApiPlayer, FetchPlayer } from "./[dyn]/route";
+import { ApiPlayer, FetchPlayer } from "./s/[dyn]/route";
 
 export async function loadPlayer(
     setPlayerMain: Dispatch<SetStateAction<ApiPlayer | null>>,

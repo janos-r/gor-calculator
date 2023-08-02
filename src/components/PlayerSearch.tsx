@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { ApiPlayer } from "@/app/s/[dyn]/route";
 import {
   Autocomplete,
   AutocompleteOption,
@@ -8,7 +9,6 @@ import {
 import { PersonSearch } from "@mui/icons-material";
 import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
-import { ApiPlayer } from "@/app/[dyn]/route";
 
 // After input, wait ms before fetch
 const debounce = 400;
@@ -32,7 +32,7 @@ export default function PlayerSearch(
     const fetchFn = async () => {
       setLoading(true);
 
-      const res = await fetch(`/${inputValue}`);
+      const res = await fetch(`/s/${inputValue}`);
       if (!res.ok) throw new Error("Failed to fetch data");
 
       // don't write the fetch result if not active anymore

@@ -15,7 +15,7 @@ import {
 import { useEffect, useState } from "react";
 import CssBaseline from "@mui/joy/CssBaseline";
 import PlayerSearch from "@/components/PlayerSearch";
-import { ApiPlayer } from "./[dyn]/route";
+import { ApiPlayer } from "./s/[dyn]/route";
 import toRankUp from "@/utils/toRankUp";
 import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
 import ratingToRank from "@/utils/ratingToRank";
