@@ -1,3 +1,11 @@
+<p align="center">
+    <img src="assets/featured.png"/>
+</p>
+
+## [🚀️ gor-calculator.com](https://gor-calculator.com/)
+
+## [📜️ Article on my web](https://radim.xyz/project/gor-calculator/)
+
 ```bash
 npm install
 npm run dev
@@ -9,7 +17,6 @@ npm run build && npm run start
 
 Possible TODO:
 
-- opponents stack to grid, and wheel in grid next or under main player
 - page for donations
   - cool blinking css link https://freefrontend.com/css-glow-effects/
 - background light and dark
@@ -22,4 +29,3 @@ Possible TODO:
   - possible click and use as a main player or opponent
 - add a details expand for opponents
   - show how many points they would gain/loose
-- buy domain

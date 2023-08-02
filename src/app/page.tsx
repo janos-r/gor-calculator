@@ -243,7 +243,7 @@ export default function Home() {
             sx={{
               "--CircularProgress-size": "240px",
               // "--CircularProgress-trackThickness": "12px",
-              "--CircularProgress-progressThickness": "17px",
+              "--CircularProgress-progressThickness": "15px",
               m: 4,
               border: 2,
               // borderWidth: 4,
