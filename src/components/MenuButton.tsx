@@ -3,10 +3,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { OpenInNew } from "@mui/icons-material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InfoIcon from "@mui/icons-material/Info";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import Menu from "@mui/joy/Menu";
 import ModalDialog from "@mui/joy/ModalDialog";
 import ModalOverflow from "@mui/joy/ModalOverflow";
 import {
+  AspectRatio,
   Box,
   IconButton,
   Link,
@@ -22,6 +24,7 @@ export default function MenuButton() {
   const buttonRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [openAbout, setOpenAbout] = useState<boolean>(false);
+  const [openDonate, setOpenDonate] = useState<boolean>(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -65,6 +68,7 @@ export default function MenuButton() {
         <Box alignSelf={"center"}>
           <ColorSchemeToggle />
         </Box>
+
         <Link
           variant="plain"
           color="neutral"
@@ -79,6 +83,14 @@ export default function MenuButton() {
           </ListItemDecorator>
           GitHub
         </Link>
+
+        <MenuItem onClick={() => setOpenDonate(true)}>
+          <ListItemDecorator>
+            <CurrencyBitcoinIcon />
+          </ListItemDecorator>
+          Donate
+        </MenuItem>
+
         <MenuItem onClick={() => setOpenAbout(true)}>
           <ListItemDecorator>
             <InfoIcon />
@@ -150,6 +162,81 @@ export default function MenuButton() {
 
               Good luck in your games and don&apos;t forget to have fun ;)<br />
               Radim Janoš
+            </Typography>
+          </ModalDialog>
+        </ModalOverflow>
+      </Modal>
+
+      <Modal
+        aria-labelledby="modal-title1"
+        aria-describedby="modal-desc1"
+        open={openDonate}
+        onClose={() => setOpenDonate(false)}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ModalOverflow>
+          <ModalDialog
+            aria-labelledby="modal-dialog-overflow1"
+            layout={"center"}
+            variant="outlined"
+            sx={{
+              width: 500,
+              maxWidth: "80%",
+              borderRadius: "md",
+              p: 3,
+              boxShadow: "lg",
+            }}
+          >
+            <ModalClose
+              variant="outlined"
+              sx={{
+                top: "calc(-1/4 * var(--IconButton-size))",
+                right: "calc(-1/4 * var(--IconButton-size))",
+                boxShadow: "0 2px 12px 0 rgba(0 0 0 / 0.2)",
+                borderRadius: "50%",
+                bgcolor: "background.body",
+              }}
+            />
+            <Typography
+              id="modal-title1"
+              level="h4"
+              fontWeight="lg"
+              mb={1}
+            >
+              Donate
+            </Typography>
+            <AspectRatio
+              ratio="1"
+              maxHeight={50}
+              sx={{ width: 200, m: "auto" }}
+            >
+              <img
+                src="/monero-logo.png"
+                alt="monero-logo"
+                style={{ backgroundColor: "Background" }}
+              />
+            </AspectRatio>
+            <Typography
+              id="modal-desc1"
+              textColor="text.tertiary"
+              sx={{ wordWrap: "break-word" }}
+              maxWidth={310}
+              alignSelf={"center"}
+            >
+              <AspectRatio ratio="1" sx={{ mt: 1, mb: 1 }}>
+                <img
+                  alt="monero-qr"
+                  src="/monero-qr.png"
+                />
+              </AspectRatio>
+              <code>
+                {/* cspell:disable-next-line */}
+                833dULnxf5SEnDubGZ3Anmh1R7MyTsGe9Y6zwqQ3HXWeiiw54U42CVYb9p57PB1P3DK7qJvH3GKiJgt3bDSYzvxMLv1WavL
+              </code>
             </Typography>
           </ModalDialog>
         </ModalOverflow>

@@ -17,8 +17,6 @@ npm run build && npm run start
 
 Possible TODO:
 
-- page for donations
-  - cool blinking css link https://freefrontend.com/css-glow-effects/
 - background light and dark
   - GlobalStyles
     https://mui.com/material-ui/customization/how-to-customize/#4-global-css-override

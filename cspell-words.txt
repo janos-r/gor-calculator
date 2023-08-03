@@ -7,3 +7,4 @@ Elab_Date
 retcode
 jigo
 Miyagaki
+monero
