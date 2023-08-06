@@ -70,7 +70,7 @@ export default function PlayerSearch(
       placeholder="Search by last name..."
       options={options}
       filterOptions={(x) => x} // to skip the components filter
-      sx={{ width: 310, borderRadius: 10 }}
+      sx={{ width: 300, borderRadius: 10 }}
       freeSolo // allows to enter on input instead of option, not ideal, but prevents the immediate "No options" message
       clearOnBlur
       clearOnEscape

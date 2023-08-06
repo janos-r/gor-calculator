@@ -19,6 +19,7 @@ import {
   Typography,
 } from "@mui/joy";
 import ColorSchemeToggle from "./ColorSchemeToggle";
+import Image from "next/image";
 
 export default function MenuButton() {
   const buttonRef = useRef(null);
@@ -214,7 +215,8 @@ export default function MenuButton() {
               maxHeight={50}
               sx={{ width: 200, m: "auto" }}
             >
-              <img
+              <Image
+                layout="fill"
                 src="/monero-logo.png"
                 alt="monero-logo"
                 style={{ backgroundColor: "Background" }}
@@ -228,7 +230,8 @@ export default function MenuButton() {
               alignSelf={"center"}
             >
               <AspectRatio ratio="1" sx={{ mt: 1, mb: 1 }}>
-                <img
+                <Image
+                  layout="fill"
                   alt="monero-qr"
                   src="/monero-qr.png"
                 />

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Box,
   Button,
   CircularProgress,
   CssVarsProvider,
@@ -156,21 +157,40 @@ export default function Home() {
   }, [playerMain, opponents]);
 
   return (
-    <CssVarsProvider defaultMode="dark">
+    <CssVarsProvider defaultMode="system">
       <CssBaseline />
-      <GlobalStyles styles={{ html: { "scrollBehavior": "smooth" } }} />
+      <GlobalStyles
+        styles={{
+          html: { "scrollBehavior": "smooth" },
+          ":root": {
+            "--Collapsed-breakpoint": "1000px", // form will stretch when viewport is below
+            "--Cover-width": "40vw", // must be `vw` only
+            "--Transition-duration": "0.3s", // set to `none` to disable transition
+          },
+        }}
+      />
 
       <Grid
         container
         direction="column"
-        // useful with Bar on bottom
-        //   justifyContent="space-between"
-        //   sx={{ minHeight: "100vh" }}
+        sx={(theme) => ({
+          minHeight: "100vh",
+          width:
+            "clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)",
+          minWidth: "420px",
+          transition: "width var(--Transition-duration)",
+          transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
+          position: "relative",
+          zIndex: 1,
+          backdropFilter: "blur(4px)",
+          backgroundColor: "rgba(255 255 255 / 0.6)",
+          [theme.getColorSchemeSelector("dark")]: {
+            backgroundColor: "rgba(19 19 24 / 0.4)",
+          },
+        })}
       >
-        <MenuButton />
-
         <Grid container justifyContent={"center"} marginBottom={5}>
-          <Stack width={420}>
+          <Stack>
             {/* Main Player */}
             <Sheet
               variant="outlined"
@@ -245,8 +265,9 @@ export default function Home() {
               // "--CircularProgress-trackThickness": "12px",
               "--CircularProgress-progressThickness": "15px",
               m: 4,
-              border: 2,
+              // border: 2,
               // borderWidth: 4,
+              boxShadow: "0 0 20px",
             }}
             color="primary"
             determinate
@@ -292,10 +313,34 @@ export default function Home() {
             )}
           </CircularProgress>
         </Grid>
-
-        <ScrollToTop />
-        <ScrollToBottom />
       </Grid>
+
+      <Box
+        sx={(theme) => ({
+          height: "100%",
+          position: "fixed",
+          right: 0,
+          top: 0,
+          bottom: 0,
+          left:
+            "clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))",
+          transition:
+            "background-image var(--Transition-duration), left var(--Transition-duration) !important",
+          transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
+          backgroundColor: "background.level1",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundImage: "url(bg-light.avif)",
+          [theme.getColorSchemeSelector("dark")]: {
+            backgroundImage: "url(bg-dark.avif)",
+          },
+        })}
+      />
+
+      <MenuButton />
+      <ScrollToTop />
+      <ScrollToBottom />
     </CssVarsProvider>
   );
 }
