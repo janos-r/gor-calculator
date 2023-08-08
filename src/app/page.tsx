@@ -334,6 +334,7 @@ export default function Home() {
           backgroundImage: "url(bg-light.avif)",
           [theme.getColorSchemeSelector("dark")]: {
             backgroundImage: "url(bg-dark.avif)",
+            filter: "brightness(20%)",
           },
         })}
       />
