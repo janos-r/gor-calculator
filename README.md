@@ -17,6 +17,7 @@ npm run build && npm run start
 
 Possible TODO:
 
+- consider go themed background
 - add favorites page
   - list of favored players stored locally
   - possible click and use as a main player or opponent

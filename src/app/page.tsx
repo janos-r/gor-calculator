@@ -177,7 +177,7 @@ export default function Home() {
           minHeight: "100vh",
           width:
             "clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)",
-          minWidth: "420px",
+          minWidth: "420px", // otherwise the blur filter is resized on mobile and doesn't cover the full width of the screen
           transition: "width var(--Transition-duration)",
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
           position: "relative",
@@ -338,6 +338,7 @@ export default function Home() {
         })}
       />
 
+      {/* Menu and scroll buttons have to be outside the blurred grid, because the backdropFilter causes them to not be "fixed" relatively to the window, but to the Grid. It is an exception created by this backdropFilter, creating an extra layer, breaking the otherwise functional fixed position. */}
       <MenuButton />
       <ScrollToTop />
       <ScrollToBottom />

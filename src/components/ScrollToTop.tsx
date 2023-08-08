@@ -14,7 +14,9 @@ export default function ScrollToTop() {
           position: "fixed",
           zIndex: 999,
           bottom: "5rem",
-          right: "1rem",
+          // right: "1rem",
+          left:
+            "clamp(100vw - var(--Cover-width) - 4rem, (var(--Collapsed-breakpoint) - 100vw) * 999 - 4rem, 100% - 4rem)",
           borderRadius: "50%",
           boxShadow: "sm",
         }}
