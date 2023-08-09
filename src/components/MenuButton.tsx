@@ -10,16 +10,22 @@ import ModalOverflow from "@mui/joy/ModalOverflow";
 import {
   AspectRatio,
   Box,
+  Button,
   IconButton,
   Link,
   ListItemDecorator,
   MenuItem,
   Modal,
   ModalClose,
+  Tooltip,
   Typography,
 } from "@mui/joy";
 import ColorSchemeToggle from "./ColorSchemeToggle";
 import Image from "next/image";
+
+const moneroAddr =
+  /* cspell:disable-next-line */
+  "833dULnxf5SEnDubGZ3Anmh1R7MyTsGe9Y6zwqQ3HXWeiiw54U42CVYb9p57PB1P3DK7qJvH3GKiJgt3bDSYzvxMLv1WavL";
 
 export default function MenuButton() {
   const buttonRef = useRef(null);
@@ -29,6 +35,17 @@ export default function MenuButton() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const [copied, setCopied] = useState<boolean>(false);
+  const timeoutRef = useRef<NodeJS.Timeout>();
+  const handleCopy = () => {
+    navigator.clipboard.writeText(moneroAddr);
+    setCopied(true);
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setCopied(false);
+    }, 1000);
   };
 
   return (
@@ -222,12 +239,10 @@ export default function MenuButton() {
                 style={{ backgroundColor: "Background" }}
               />
             </AspectRatio>
-            <Typography
-              id="modal-desc1"
-              textColor="text.tertiary"
-              sx={{ wordWrap: "break-word" }}
+            <Box
               maxWidth={310}
               alignSelf={"center"}
+              textAlign={"center"}
             >
               <AspectRatio ratio="1" sx={{ mt: 1, mb: 1 }}>
                 <Image
@@ -236,11 +251,28 @@ export default function MenuButton() {
                   src="/monero-qr.png"
                 />
               </AspectRatio>
-              <code>
-                {/* cspell:disable-next-line */}
-                833dULnxf5SEnDubGZ3Anmh1R7MyTsGe9Y6zwqQ3HXWeiiw54U42CVYb9p57PB1P3DK7qJvH3GKiJgt3bDSYzvxMLv1WavL
-              </code>
-            </Typography>
+              <Typography
+                textColor="text.tertiary"
+                sx={{ wordWrap: "break-word" }}
+              >
+                <code>{moneroAddr}</code>
+              </Typography>
+              <Tooltip
+                title="Copied!"
+                open={copied}
+                arrow
+                variant="solid"
+                placement="right"
+              >
+                <Button
+                  color="neutral"
+                  size="sm"
+                  onClick={handleCopy}
+                >
+                  Copy
+                </Button>
+              </Tooltip>
+            </Box>
           </ModalDialog>
         </ModalOverflow>
       </Modal>
