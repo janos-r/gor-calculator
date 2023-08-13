@@ -43,10 +43,24 @@ export default function PlayerSearch(
       }
     };
 
-    // Fetch api doesn't handle whitespace
-    if (inputValue.length > 2 && !/\s/.test(inputValue)) {
+    // Fetch api doesn't handle whitespace or digits
+    if (inputValue.length > 2 && !/\s|\d/.test(inputValue)) {
       // Debounce time in ms
       handler = setTimeout(fetchFn, debounce);
+    } else if (!isNaN(parseInt(inputValue))) {
+      // input is a number
+      const rating = parseInt(inputValue);
+      if (rating < 0 || rating > 4000) {
+        setOptions([]);
+      } else {
+        setOptions([{
+          fullName: `Unknown ${rating}`,
+          rating,
+          country: "",
+          pin: "",
+          rank: "?",
+        }]);
+      }
     } else if (inputValue.length === 0) {
       // when cleared (by backspace or clear event)
       setOptions([]);
@@ -67,7 +81,7 @@ export default function PlayerSearch(
       variant="soft"
       startDecorator={<PersonSearch />}
       endDecorator={loading ? <CircularProgress size="sm" /> : null}
-      placeholder="Search by last name..."
+      placeholder="Select by last name or GoR..."
       options={options}
       filterOptions={(x) => x} // to skip the components filter
       sx={{ width: 300, borderRadius: 10 }}

@@ -20,22 +20,25 @@ export default function PlayerDetails(
           <Typography fontSize={"sm"}>
             GoR: {player.rating}
           </Typography>
-          <Typography
-            fontSize={"sm"}
-            textColor="neutral"
-          >
-            ID:{" "}
-            <Link
-              tabIndex={-1}
-              href={`https://www.europeangodatabase.eu/EGD/Player_Card.php?&key=${player.pin}`}
-              textColor={"inherit"}
-              endDecorator={<OpenInNew />}
-              target="_blank"
-              rel="noopener"
-            >
-              {player.pin}
-            </Link>
-          </Typography>
+          {player.pin &&
+            (
+              <Typography
+                fontSize={"sm"}
+                textColor="neutral"
+              >
+                ID:{" "}
+                <Link
+                  tabIndex={-1}
+                  href={`https://www.europeangodatabase.eu/EGD/Player_Card.php?&key=${player.pin}`}
+                  textColor={"inherit"}
+                  endDecorator={<OpenInNew />}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {player.pin}
+                </Link>
+              </Typography>
+            )}
         </Grid>
         <Grid container alignItems="center">
           <Typography fontSize={"sm"}>
@@ -56,7 +59,7 @@ export default function PlayerDetails(
         textAlign={"center"}
         color="danger"
       >
-        Please select a real player!
+        Please select a real player, or a rating 0-4000!
       </Typography>
     );
 }

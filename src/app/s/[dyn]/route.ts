@@ -25,12 +25,12 @@ type FetchRes = {
     players: FetchPlayer[];
 };
 export type ApiPlayer = {
-    pin: string;
+    pin?: string;
     fullName: string;
     rank: string;
     rating: number;
     country: string;
-    timestamp: number;
+    timestamp?: number;
 };
 
 function FetchPlayerToApiPlayer(p: FetchPlayer): ApiPlayer {

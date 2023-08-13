@@ -23,4 +23,3 @@ Possible TODO:
   - possible click and use as a main player or opponent
 - add a details expand for opponents
   - show how many points they would gain/loose
-- add opponent from GoR, new player outside of DB

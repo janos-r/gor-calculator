@@ -10,3 +10,7 @@ test("getFlagEmoji", () => {
 test("exception", () => {
     expect(getFlagEmoji("UK")).toBe(`🇬🇧`);
 });
+
+test("no country", () => {
+    expect(getFlagEmoji("")).toBe(``);
+});

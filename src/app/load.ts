@@ -14,7 +14,7 @@ export async function loadPlayer(
     // Refresh once per day
     // 86,400,000 milliseconds (the number of seconds in one day)
     const t24hAgo = Date.now() - 864e5;
-    if (playerMainLoaded && playerMainLoaded.timestamp < t24hAgo) {
+    if (playerMainLoaded?.timestamp && playerMainLoaded.timestamp < t24hAgo) {
         // fetch by pin
         const res = await fetch(
             `https://www.europeangodatabase.eu/EGD/GetPlayerDataByPIN.php?pin=${playerMainLoaded.pin}`,
