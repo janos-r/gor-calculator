@@ -14,6 +14,28 @@ Se is computed by the Bradley-Terry formula: Se = 1 / (1 + exp(β(r2) - β(r1)))
 r1 is the EGD rating of the player
 r2 is the EGD rating of the opponent
 β is a mapping function for EGD ratings: β = -7 * ln(3300 - r)
+
+Tournament classes
+class A:
+well organized tournament
+time limit requirements: adjusted time minimum 75 minutes, basic time minimum 60 minutes;
+Fischer time: basic time minimum 45 mins
+weight for inclusion to EGF ratings: 1.00
+class B:
+well organized tournament
+time limit requirements: adjusted time minimum 50 minutes, basic time minimum 40 minutes;
+Fischer time: basic time minimum 30 mins
+weight for inclusion to EGF ratings: 0.75
+class C:
+casual or club tournament
+time limit requirements: adjusted time minimum 30 minutes, basic time minimum 25 minutes;
+Fischer time: basic time minimum 20 mins
+weight for inclusion to EGF ratings: 0.50
+class D:
+Tournaments played on Internet
+time limit requirements: adjusted time minimum 50 minutes, basic time minimum 40 minutes;
+Fischer time: basic time minimum 30 mins
+weight for inclusion to EGF ratings: 0.25
 */
 
 export type GorResult = {
@@ -22,8 +44,18 @@ export type GorResult = {
     winProbability: number;
 };
 
+// export type TournamentClass = 1 | 0.75 | 0.5 | 0.25;
+
+export enum TournamentClass {
+    A = 1,
+    B = 0.75,
+    C = 0.5,
+    D = 0.25,
+}
+
 export default function calcGor(
     player: number,
+    tournamentClass: TournamentClass,
     opponent: number,
     win: boolean,
 ): GorResult {
@@ -34,7 +66,7 @@ export default function calcGor(
     const con = ((3300 - r1) / 200) ** 1.6;
     const bonus = Math.log(1 + Math.exp((2300 - r1) / 80)) / 5;
     const gorNew = r1 + con * (Sa - Se) + bonus;
-    const gorChange = gorNew - r1;
+    const gorChange = (gorNew - r1) * tournamentClass;
 
     function beta(r: number): number {
         return -7 * Math.log(3300 - r);

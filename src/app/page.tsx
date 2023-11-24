@@ -9,6 +9,8 @@ import {
   FormLabel,
   GlobalStyles,
   Grid,
+  Option,
+  Select,
   Sheet,
   Stack,
   Typography,
@@ -20,7 +22,7 @@ import { ApiPlayer } from "./s/[dyn]/route";
 import toRankUp from "@/utils/toRankUp";
 import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
 import ratingToRank from "@/utils/ratingToRank";
-import { loadOpponents, loadPlayer } from "./load";
+import { loadOpponents, loadPlayer, loadTournamentClass } from "./load";
 import PlayerDetails from "@/components/PlayerDetails";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToBottom from "@/components/ScrollToBottom";
@@ -28,12 +30,17 @@ import EastIcon from "@mui/icons-material/East";
 import MenuButton from "@/components/MenuButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddIcon from "@mui/icons-material/Add";
+import { TournamentClass } from "@/utils/calcGor";
 
 const loadPlayerKey = "playerMain";
+const loadTournamentClassKey = "tournamentClass";
 const loadOpponentsKey = "opponents";
 
 export default function Home() {
   const [playerMain, setPlayerMain] = useState<ApiPlayer | null>(null);
+  const [tournamentClass, setTournamentClass] = useState<TournamentClass>(
+    TournamentClass.A,
+  );
   const [opponents, setOpponents] = useState<Opponents>([]);
   const [progress, setProgress] = useState<number>(0); // from 0-100 - wheel input
   const [totalGorChange, setTotalGorChange] = useState<number | null>(null);
@@ -42,6 +49,7 @@ export default function Home() {
   // On init - localStorage
   useEffect(() => {
     loadPlayer(setPlayerMain, loadPlayerKey).catch(console.error);
+    loadTournamentClass(setTournamentClass, loadTournamentClassKey);
     loadOpponents(setOpponents, loadOpponentsKey);
   }, []);
 
@@ -63,6 +71,14 @@ export default function Home() {
       localStorage.removeItem(loadPlayerKey);
     }
   }, [playerMain]);
+
+  // Tournament class change localStorage
+  useEffect(() => {
+    localStorage.setItem(
+      loadTournamentClassKey,
+      JSON.stringify(tournamentClass),
+    );
+  }, [tournamentClass]);
 
   // Opponents change localStorage
   useEffect(() => {
@@ -153,6 +169,7 @@ export default function Home() {
       setTotalGorChange(totalGorChangeRounded);
     } else {
       setTotalGorChange(null);
+      setTournamentClass(TournamentClass.A);
     }
   }, [playerMain, opponents]);
 
@@ -210,17 +227,42 @@ export default function Home() {
               </FormControl>
             </Sheet>
 
-            {/* Opponents */}
-            <Button
-              color="danger"
-              variant="soft"
-              sx={{ width: "auto", alignSelf: "end", m: 1, marginTop: 4 }}
-              size="sm"
-              startDecorator={<HighlightOffIcon />}
-              onClick={() => setOpponents([])}
+            <Stack
+              direction="row"
+              justifyContent="space-around"
+              alignItems="flex-end"
+              spacing={2}
             >
-              All opponents
-            </Button>
+              <FormControl>
+                <FormLabel>
+                  Tournament class
+                </FormLabel>
+                <Select
+                  size="sm"
+                  value={tournamentClass}
+                  onChange={(_event, newValue) => {
+                    setTournamentClass(newValue as TournamentClass);
+                  }}
+                >
+                  <Option value={TournamentClass.A}>A &nbsp; 100%</Option>
+                  <Option value={TournamentClass.B}>B &nbsp;&nbsp; 75%</Option>
+                  <Option value={TournamentClass.C}>C &nbsp;&nbsp; 50%</Option>
+                  <Option value={TournamentClass.D}>D &nbsp;&nbsp; 25%</Option>
+                </Select>
+              </FormControl>
+
+              {/* Opponents */}
+              <Button
+                sx={{ justifyContent: "end" }}
+                color="danger"
+                variant="soft"
+                size="sm"
+                startDecorator={<HighlightOffIcon />}
+                onClick={() => setOpponents([])}
+              >
+                All opponents
+              </Button>
+            </Stack>
 
             <Stack marginBottom={2} spacing={2} sx={{ p: 3 }}>
               {opponents.map((e) => {
@@ -231,6 +273,7 @@ export default function Home() {
                     opponents={opponents}
                     setOpponents={setOpponents}
                     mainPlayerGor={playerMain?.rating}
+                    tournamentClass={tournamentClass}
                   />
                 );
               })}

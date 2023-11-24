@@ -11,7 +11,7 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PlayerSearch from "./PlayerSearch";
 import { Close } from "@mui/icons-material";
-import calcGor, { GorResult } from "@/utils/calcGor";
+import calcGor, { GorResult, TournamentClass } from "@/utils/calcGor";
 import PlayerDetails from "./PlayerDetails";
 
 export type Opponents = Array<{
@@ -27,9 +27,10 @@ export default function OpponentSearch(
     opponents: Opponents;
     setOpponents: Dispatch<SetStateAction<Opponents>>;
     mainPlayerGor: number | undefined;
+    tournamentClass: TournamentClass;
   },
 ) {
-  const { id, opponents, setOpponents, mainPlayerGor } = props;
+  const { id, opponents, setOpponents, mainPlayerGor, tournamentClass } = props;
   const index = opponents.findIndex((o) => o?.id === id);
   const item = opponents[index];
   const loadOpponent = item?.opponent || null;
@@ -45,10 +46,10 @@ export default function OpponentSearch(
   useEffect(() => {
     setCalcGorResult(
       (mainPlayerGor && opponent)
-        ? calcGor(mainPlayerGor, opponent.rating, win)
+        ? calcGor(mainPlayerGor, tournamentClass, opponent.rating, win)
         : null,
     );
-  }, [mainPlayerGor, opponent, win]);
+  }, [mainPlayerGor, tournamentClass, opponent, win]);
 
   useEffect(() => {
     setOpponents((arr) => {
