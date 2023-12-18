@@ -178,9 +178,10 @@ export default function Home() {
       <CssBaseline />
       <GlobalStyles
         styles={{
-          html: { "scrollBehavior": "smooth" },
+          html: { "min-width": "420px", "scrollBehavior": "smooth" },
+          body: { "min-width": "420px" },
           ":root": {
-            "--Collapsed-breakpoint": "1000px", // form will stretch when viewport is below
+            "--Collapsed-breakpoint": "1200px", // form will stretch when viewport is below
             "--Cover-width": "40vw", // must be `vw` only
             "--Transition-duration": "0.3s", // set to `none` to disable transition
           },
@@ -192,8 +193,7 @@ export default function Home() {
         direction="column"
         sx={(theme) => ({
           minHeight: "100vh",
-          width:
-            "clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)",
+          "@media screen and (min-width: 1200px)": { width: "60vw" },
           minWidth: "420px", // otherwise the blur filter is resized on mobile and doesn't cover the full width of the screen
           transition: "width var(--Transition-duration)",
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
@@ -366,7 +366,7 @@ export default function Home() {
           top: 0,
           bottom: 0,
           left:
-            "clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))",
+            "clamp(0vw, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))",
           transition:
             "background-image var(--Transition-duration), left var(--Transition-duration) !important",
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",

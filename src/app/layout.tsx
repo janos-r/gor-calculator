@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "GoR Calculator",
   description: "Go rating calculator for the European Go Database",
   manifest: "/manifest.json",
+  viewport: "width=device-width, shrink-to-fit=yes",
 };
 
 export default function RootLayout({
