@@ -130,8 +130,8 @@ export default function MenuButton() {
             layout={"center"}
             variant="outlined"
             sx={{
-              width: 500,
-              maxWidth: "80%",
+              width: 510,
+              maxWidth: "90%",
               borderRadius: "md",
               p: 3,
               boxShadow: "lg",
@@ -157,20 +157,23 @@ export default function MenuButton() {
             >
               GoR Calculator
             </Typography>
-            <Typography id="modal-desc" textColor="text.tertiary">
+            <Typography
+              id="modal-desc"
+              textColor="text.tertiary"
+              level="h6"
+            >
               Thank you for using GoR Calculator. <br />
               I often saw on tournaments how people were trying to calculate
               their progress with the calculator on{" "}
               <Link href="https://europeangodatabase.eu/EGD/gor_calculator.php">
                 EGD
-              </Link>. It is very detailed and still the best choice if you are
-              on a non-A class tournament. This app is currently only
-              calculating A-class and non-handicap. As that is the most common
-              anyway. I wanted to challenge myself to make something slightly
+              </Link>. I wanted to challenge myself to make something slightly
               more user friendly, that can look good on smartphones and remember
               the choices even after closing, as the tournament progresses. This
-              app caches all the selected players. The main player gets
-              refreshed once per day and the opponents stay unchanged until
+              app caches all the selected players. You can even calculate for
+              people that are not yet in the database, by only inputting their
+              GoR number instead of searching for their surname. The main player
+              gets refreshed once per day and the opponents stay unchanged until
               cleared. If you find any bugs or would like to provide some fix or
               feature, feel free to contact me via GitHub with a PR or with an
               issue. I leave this code fully open. <br />
@@ -178,7 +181,7 @@ export default function MenuButton() {
               give back to the community.<br />
               <br />
 
-              Good luck in your games and don&apos;t forget to have fun ;)<br />
+              Good luck in your games and don&apos;t forget to have fun 😉️<br />
               Radim Janoš
             </Typography>
           </ModalDialog>
