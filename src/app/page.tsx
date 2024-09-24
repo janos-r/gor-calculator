@@ -1,5 +1,17 @@
 "use client";
 
+import MenuButton from "@/components/MenuButton";
+import OpponentSearch, { type Opponents } from "@/components/OpponentSearch";
+import PlayerDetails from "@/components/PlayerDetails";
+import PlayerSearch from "@/components/PlayerSearch";
+import ScrollToBottom from "@/components/ScrollToBottom";
+import ScrollToTop from "@/components/ScrollToTop";
+import { TournamentClass } from "@/utils/calcGor";
+import ratingToRank from "@/utils/ratingToRank";
+import toRankUp from "@/utils/toRankUp";
+import AddIcon from "@mui/icons-material/Add";
+import EastIcon from "@mui/icons-material/East";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Box,
   Button,
@@ -15,22 +27,10 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
-import { useEffect, useState } from "react";
 import CssBaseline from "@mui/joy/CssBaseline";
-import PlayerSearch from "@/components/PlayerSearch";
-import { ApiPlayer } from "./s/[dyn]/route";
-import toRankUp from "@/utils/toRankUp";
-import OpponentSearch, { Opponents } from "@/components/OpponentSearch";
-import ratingToRank from "@/utils/ratingToRank";
+import { useEffect, useState } from "react";
 import { loadOpponents, loadPlayer, loadTournamentClass } from "./load";
-import PlayerDetails from "@/components/PlayerDetails";
-import ScrollToTop from "@/components/ScrollToTop";
-import ScrollToBottom from "@/components/ScrollToBottom";
-import EastIcon from "@mui/icons-material/East";
-import MenuButton from "@/components/MenuButton";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import AddIcon from "@mui/icons-material/Add";
-import { TournamentClass } from "@/utils/calcGor";
+import type { ApiPlayer } from "./s/[dyn]/route";
 
 const loadPlayerKey = "playerMain";
 const loadTournamentClassKey = "tournamentClass";

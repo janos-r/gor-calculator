@@ -1,12 +1,8 @@
-import { useRef, useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
 import { OpenInNew } from "@mui/icons-material";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InfoIcon from "@mui/icons-material/Info";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
-import Menu from "@mui/joy/Menu";
-import ModalDialog from "@mui/joy/ModalDialog";
-import ModalOverflow from "@mui/joy/ModalOverflow";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AspectRatio,
   Box,
@@ -20,8 +16,12 @@ import {
   Tooltip,
   Typography,
 } from "@mui/joy";
-import ColorSchemeToggle from "./ColorSchemeToggle";
+import Menu from "@mui/joy/Menu";
+import ModalDialog from "@mui/joy/ModalDialog";
+import ModalOverflow from "@mui/joy/ModalOverflow";
 import Image from "next/image";
+import { useRef, useState } from "react";
+import ColorSchemeToggle from "./ColorSchemeToggle";
 
 const moneroAddr =
   /* cspell:disable-next-line */
@@ -90,7 +90,7 @@ export default function MenuButton() {
         <Link
           variant="plain"
           color="neutral"
-          href={`https://github.com/janos-r/gor-calculator`}
+          href={"https://github.com/janos-r/gor-calculator"}
           endDecorator={<OpenInNew />}
           target="_blank"
           rel="noreferrer"

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useColorScheme } from "@mui/joy/styles";
 import { IconButton } from "@mui/joy";
+import { useColorScheme } from "@mui/joy/styles";
+import { useEffect, useState } from "react";
 
 // Icons import
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";

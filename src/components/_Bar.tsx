@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { OpenInNew } from "@mui/icons-material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import {
@@ -10,6 +9,7 @@ import {
   Sheet,
   Typography,
 } from "@mui/joy";
+import { useState } from "react";
 
 export default function Bar() {
   const [openAbout, setOpenAbout] = useState<boolean>(false);
@@ -101,7 +101,7 @@ export default function Bar() {
       >
         <Link
           textColor="inherit"
-          href={`https://github.com/janos-r/gor-calculator`}
+          href={"https://github.com/janos-r/gor-calculator"}
           startDecorator={<GitHubIcon sx={{ fontSize: 30 }} />}
           endDecorator={<OpenInNew />}
           target="_blank"

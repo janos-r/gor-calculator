@@ -1,4 +1,4 @@
-import { ApiPlayer } from "@/app/s/[dyn]/route";
+import type { ApiPlayer } from "@/app/s/[dyn]/route";
 import countryCodes from "@/utils/countryCodes";
 import { getFlagEmoji } from "@/utils/getFlagEmoji";
 import { OpenInNew } from "@mui/icons-material";

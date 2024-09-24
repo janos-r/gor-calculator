@@ -1,7 +1,7 @@
-import { Opponents } from "@/components/OpponentSearch";
-import { Dispatch, SetStateAction } from "react";
-import { ApiPlayer, FetchPlayer } from "./s/[dyn]/route";
+import type { Opponents } from "@/components/OpponentSearch";
 import { TournamentClass } from "@/utils/calcGor";
+import type { Dispatch, SetStateAction } from "react";
+import type { ApiPlayer, FetchPlayer } from "./s/[dyn]/route";
 
 export async function loadPlayer(
     setPlayerMain: Dispatch<SetStateAction<ApiPlayer | null>>,
@@ -38,12 +38,14 @@ export function loadOpponents(
     setOpponents: Dispatch<SetStateAction<Opponents>>,
     opponentsKey: string,
 ): void {
-    const opponentsDefault = [{
-        id: 0,
-        opponent: null,
-        win: true,
-        gorChange: null,
-    }];
+    const opponentsDefault = [
+        {
+            id: 0,
+            opponent: null,
+            win: true,
+            gorChange: null,
+        },
+    ];
     const opponentsVal = localStorage.getItem(opponentsKey);
     let opponentsLoaded: Opponents = opponentsVal
         ? JSON.parse(opponentsVal)
@@ -57,7 +59,7 @@ export function loadTournamentClass(
     tournamentClassKey: string,
 ): void {
     const tournamentClassVal = localStorage.getItem(tournamentClassKey);
-    let tournamentClassLoaded = tournamentClassVal
+    const tournamentClassLoaded = tournamentClassVal
         ? +tournamentClassVal
         : TournamentClass.A;
     setTournamentClass(tournamentClassLoaded);

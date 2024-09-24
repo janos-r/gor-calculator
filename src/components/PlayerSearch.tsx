@@ -1,14 +1,14 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { ApiPlayer } from "@/app/s/[dyn]/route";
+import type { ApiPlayer } from "@/app/s/[dyn]/route";
+import { PersonSearch } from "@mui/icons-material";
 import {
   Autocomplete,
   AutocompleteOption,
   CircularProgress,
   Typography,
 } from "@mui/joy";
-import { PersonSearch } from "@mui/icons-material";
-import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
+import parse from "autosuggest-highlight/parse";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 
 // After input, wait ms before fetch
 const debounce = 400;

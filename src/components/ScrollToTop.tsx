@@ -1,5 +1,5 @@
-import { IconButton, Tooltip } from "@mui/joy";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { IconButton, Tooltip } from "@mui/joy";
 
 export default function ScrollToTop() {
   return (

@@ -1,5 +1,5 @@
-import { IconButton, Tooltip } from "@mui/joy";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { IconButton, Tooltip } from "@mui/joy";
 
 export default function ScrollToBottom() {
   return (

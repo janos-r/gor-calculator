@@ -1,4 +1,6 @@
-import { ApiPlayer } from "@/app/s/[dyn]/route";
+import type { ApiPlayer } from "@/app/s/[dyn]/route";
+import calcGor, { type GorResult, type TournamentClass } from "@/utils/calcGor";
+import { Close } from "@mui/icons-material";
 import {
   FormControl,
   FormLabel,
@@ -8,11 +10,9 @@ import {
   Switch,
   Typography,
 } from "@mui/joy";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import PlayerSearch from "./PlayerSearch";
-import { Close } from "@mui/icons-material";
-import calcGor, { GorResult, TournamentClass } from "@/utils/calcGor";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import PlayerDetails from "./PlayerDetails";
+import PlayerSearch from "./PlayerSearch";
 
 export type Opponents = Array<{
   id: number;
