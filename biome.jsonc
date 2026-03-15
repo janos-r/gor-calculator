@@ -1,0 +1,29 @@
+{
+    "files": {
+        "includes": ["**" ]
+    },
+    "formatter": {
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "correctness": {
+                "noChildrenProp": "warn"
+            },
+            "a11y": {
+                "noSvgWithoutTitle": "warn"
+            }
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["**/*.jsx", "**/*.tsx"],
+            "formatter": {
+                "indentStyle": "space",
+                "indentWidth": 2
+            }
+        }
+    ]
+}

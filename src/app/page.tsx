@@ -1,14 +1,5 @@
 "use client";
 
-import MenuButton from "@/components/MenuButton";
-import OpponentSearch, { type Opponents } from "@/components/OpponentSearch";
-import PlayerDetails from "@/components/PlayerDetails";
-import PlayerSearch from "@/components/PlayerSearch";
-import ScrollToBottom from "@/components/ScrollToBottom";
-import ScrollToTop from "@/components/ScrollToTop";
-import { TournamentClass } from "@/utils/calcGor";
-import ratingToRank from "@/utils/ratingToRank";
-import toRankUp from "@/utils/toRankUp";
 import AddIcon from "@mui/icons-material/Add";
 import EastIcon from "@mui/icons-material/East";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -29,6 +20,15 @@ import {
 } from "@mui/joy";
 import CssBaseline from "@mui/joy/CssBaseline";
 import { useEffect, useState } from "react";
+import MenuButton from "@/components/MenuButton";
+import OpponentSearch, { type Opponents } from "@/components/OpponentSearch";
+import PlayerDetails from "@/components/PlayerDetails";
+import PlayerSearch from "@/components/PlayerSearch";
+import ScrollToBottom from "@/components/ScrollToBottom";
+import ScrollToTop from "@/components/ScrollToTop";
+import { TournamentClass } from "@/utils/calcGor";
+import ratingToRank from "@/utils/ratingToRank";
+import toRankUp from "@/utils/toRankUp";
 import { loadOpponents, loadPlayer, loadTournamentClass } from "./load";
 import type { ApiPlayer } from "./s/[dyn]/route";
 
@@ -87,15 +87,13 @@ export default function Home() {
 
   // progress
   useEffect(() => {
-    setProgress((
-      _prevProgress,
-    ): number => {
+    setProgress((_prevProgress): number => {
       if (!playerMain) {
         return 0;
       } else if (!progressGor) {
-        return (100 - toRankUp(playerMain.rating));
+        return 100 - toRankUp(playerMain.rating);
       } else {
-        return (100 - toRankUp(progressGor));
+        return 100 - toRankUp(progressGor);
       }
     });
   }, [playerMain, progressGor]);
@@ -124,7 +122,7 @@ export default function Home() {
           } else {
             const increment = 1; // has to stay 1 for now; no check on setProgressGor
             usePoints -= increment;
-            setProgressGor((r) => r ? r + increment : r);
+            setProgressGor((r) => (r ? r + increment : r));
           }
         }, 40);
       } else if (totalGorChange < 0) {
@@ -146,7 +144,7 @@ export default function Home() {
           } else {
             const increment = 1; // has to stay 1 for now; no check on setProgressGor
             usePoints += increment;
-            setProgressGor((r) => r ? r - increment : r);
+            setProgressGor((r) => (r ? r - increment : r));
           }
         }, 40);
       }
@@ -154,7 +152,7 @@ export default function Home() {
     return () => {
       clearInterval(timer);
     };
-  }, [totalGorChange]);
+  }, [totalGorChange, playerMain, playerMain?.rating]);
 
   useEffect(() => {
     // setProgress here, to change immediately to the new player and/or start animation from base
@@ -178,7 +176,7 @@ export default function Home() {
       <CssBaseline />
       <GlobalStyles
         styles={{
-          html: { "min-width": "420px", "scrollBehavior": "smooth" },
+          html: { "min-width": "420px", scrollBehavior: "smooth" },
           body: { "min-width": "420px" },
           ":root": {
             "--Collapsed-breakpoint": "1200px", // form will stretch when viewport is below
@@ -234,9 +232,7 @@ export default function Home() {
               spacing={2}
             >
               <FormControl>
-                <FormLabel>
-                  Tournament class
-                </FormLabel>
+                <FormLabel>Tournament class</FormLabel>
                 <Select
                   size="sm"
                   value={tournamentClass}
@@ -268,8 +264,8 @@ export default function Home() {
               {opponents.map((e) => {
                 return (
                   <OpponentSearch
-                    key={e?.id}
-                    id={e!.id}
+                    key={e.id}
+                    id={e.id}
                     opponents={opponents}
                     setOpponents={setOpponents}
                     mainPlayerGor={playerMain?.rating}
@@ -285,12 +281,15 @@ export default function Home() {
               sx={{ width: "auto", m: "auto", marginBottom: 4 }}
               startDecorator={<AddIcon />}
               onClick={() => {
-                setOpponents([...opponents, {
-                  id: Math.random(),
-                  opponent: null,
-                  win: true,
-                  gorChange: null,
-                }]);
+                setOpponents([
+                  ...opponents,
+                  {
+                    id: Math.random(),
+                    opponent: null,
+                    win: true,
+                    gorChange: null,
+                  },
+                ]);
                 setTimeout(
                   () => window.scrollTo(0, document.body.scrollHeight),
                   // wait for the window height to update, otherwise it doesn't scroll all the way down
@@ -323,14 +322,13 @@ export default function Home() {
                   {ratingToRank(progressGor)} <br />
                 </Typography>
                 <Typography>
-                  {progressGor} GoR<br />
+                  {progressGor} GoR
+                  <br />
                 </Typography>
                 {totalGorChange && (
                   <Typography>
-                    {
-                      /* TODO: make the arrow lower or smaller.
-                      There are some type issues with using fontSize. "md" builds in dev, but not in build. And "medium" doesn't have an effect. */
-                    }
+                    {/* TODO: make the arrow lower or smaller.
+                      There are some type issues with using fontSize. "md" builds in dev, but not in build. And "medium" doesn't have an effect. */}
                     {playerMain.rating} <EastIcon fontSize="medium" />{" "}
                     <Typography
                       color={totalGorChange > 0 ? "success" : "danger"}
@@ -340,7 +338,8 @@ export default function Home() {
                     <br />
                   </Typography>
                 )}
-                {toRankUp(playerMain.rating)} to rank up<br />
+                {toRankUp(playerMain.rating)} to rank up
+                <br />
                 {totalGorChange && (
                   <Typography
                     level="h3"
@@ -365,8 +364,7 @@ export default function Home() {
           right: 0,
           top: 0,
           bottom: 0,
-          left:
-            "clamp(0vw, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))",
+          left: "clamp(0vw, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))",
           transition:
             "background-image var(--Transition-duration), left var(--Transition-duration) !important",
           transitionDelay: "calc(var(--Transition-duration) + 0.1s)",
